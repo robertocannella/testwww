@@ -11,9 +11,10 @@ secret_key="Your-Secret-Key"
 
 # Generate header and payload
 header=$(create_header | base64url_encode)
-payload=$(create_payload "1234567890" "John Doe" true | base64url_encode)
+payload=$(create_payload "1234567890" "John Doe" false | base64url_encode)
 
 # Generate JWT
+
 jwt=$(generate_jwt "$header" "$payload" "$secret_key")
 
 # Extract the API version header exact case
@@ -21,6 +22,12 @@ jwt=$(generate_jwt "$header" "$payload" "$secret_key")
 # Extract Content-Type header to uppercase
 version=$(echo "$HTTP_X_API_VERSION" | tr '[:lower:]' '[:upper:]')
 
+# MAKE A CALL TO TCP SERVER
+
+
+
+
+# END MAKE A CALL TO TCP SERVER
 
 # Check Content-Type and execute corresponding script
 if [[ "${version}" == "API-VERSION-2023-12" ]]; then
