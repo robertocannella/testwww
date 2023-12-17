@@ -5,7 +5,6 @@ CONTENT_TYPE=$(echo "$CONTENT_TYPE" | tr '[:upper:]' '[:lower:]')
 
 # Check Content-Type and execute corresponding script
 if [[ "$CONTENT_TYPE" == "application/json" ]]; then
-
     ./api.sh
     exit 0
 else
