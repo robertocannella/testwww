@@ -2,6 +2,20 @@
 
 # This script runs during an API request
 
+source ../env.sh
+source ../Project/jwt/generate_jwt.sh
+source ../Project/log/debug.sh
+
+# Set the secret key
+secret_key="Your-Secret-Key"
+
+# Generate header and payload
+header=$(create_header | base64url_encode)
+payload=$(create_payload "1234567890" "John Doe" true | base64url_encode)
+
+# Generate JWT
+jwt=$(generate_jwt "$header" "$payload" "$secret_key")
+
 # Extract the API version header exact case
 # api_version="${HTTP_X_API_VERSION}"
 # Extract Content-Type header to uppercase
@@ -14,6 +28,7 @@ if [[ "${version}" == "API-VERSION-2023-12" ]]; then
     echo ""
     # Sending a JSON response
     echo '{'
+    echo '  "Generated JWT": "'"${jwt}"'",'
     echo '  "version":  "'"${version}"'",'
     echo '  "status": "success",'
     echo '  "message": "Data retrieved successfully",'

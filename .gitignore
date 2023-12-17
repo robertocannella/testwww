@@ -2,3 +2,4 @@
 /.idea/deployment.xml
 /.idea/.gitignore
 /.idea/vcs.xml
+/WebServer/env.sh
